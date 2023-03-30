@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+<div class="container py-3 d-flex flex-wrap">
+    {% for ad_ in ads %}
+    <a class="card m-1 text-decoration-none text-dark" style="width: 32%;" href="{% url 'ad' ad_id=ad_.id %}">
+      <img src="{% static ad_.img_url %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ad_.title}}</h5>
+        <p class="card-text">{{ad_.description}}</p>
+      </div>
+    </a>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

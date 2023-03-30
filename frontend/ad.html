@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Ad{% endblock %}
+{% block body %}
+
+<div class="container py-3 d-flex flex-wrap text-white h-100">
+    <div class="row">
+        <div class="col">
+            <img src="{% static ad.img_url %}" alt="" class="w-100 h-auto">
+        </div>
+        <div class="col">
+            <p class="fs-3 my-1 fw-bold">Владелец: <a class="fw-normal text-white" href="{% url 'user' user_id=ad.author.id %}">{{ ad.author.username }}</a></p>
+            <p class="fs-3 my-1 fw-bold">Название: <span class="fw-normal">{{ ad.title }}</span></p>
+            <p class="fs-4 my-1 fw-bold ">Описание: <span class="fw-normal">{{ ad.description }}</span></p>
+            <p class="fs-3 my-1 fw-bold">Цена: <span class="">{{ ad.price }} т</span></p>
+            {% if user.id == ad.author.id %}
+            <a href="{% url 'ad_edit' ad_id=ad.id %}" class="btn btn-primary">Редактировать</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load token_input %}
+{% block title %}New ad{% endblock %}
+{% block body %}
+
+<div class="container py-3 d-flex flex-wrap text-white h-100">
+  {% if ad.id %}
+    <form action="{% url 'ad_edit' ad_id=ad.id %}" method="POST"  enctype="multipart/form-data">
+      ad_edit
+  {% else %}
+    <form action="{% url 'ad_new' %}" method="POST"  enctype="multipart/form-data">
+      ad_new
+  {% endif %}
+      <input type="hidden" name="method_" value="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+<!--    <div class="mb-2">-->
+<!--      <label for="formFile" class="form-label fw-bold">Выберите картинку</label>-->
+<!--      <input class="form-control" type="file" id="formFile" name="img">-->
+<!--    </div>-->
+
+<!--    <label for="title_input_form" class=" fw-bold">Введите наименование</label><br>-->
+<!--    <input type="text" placeholder="title" name="title" id="title_input_form" class="w-100 mb-2"><br>-->
+
+<!--    <label for="description_input_form" class=" fw-bold">Введите описание</label><br>-->
+<!--    <input type="text" placeholder="description" name="description" id="description_input_form" class="w-100 mb-2">-->
+
+<!--    <label for="price_input_form" class=" fw-bold">Введите цену</label><br>-->
+<!--    <input type="text" placeholder="price" name="price" id="price_input_form" class="w-100 mb-2"><br>-->
+
+    <input type="submit" value="Добавить" class="btn btn-primary w-100 py-2">
+  </form>
+{{message}}
+</div>
+
+{% endblock %}
