@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-idva+&ypv68a9vfbz-i($hh@u0(ic!=!rnw*71&$)s=hj$t85b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'django-server-production-7fde.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['django-server-production-7fde.up.railway.app']
 
 # Application definition
 
@@ -43,12 +43,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 ]
 
 ROOT_URLCONF = 'django_settings.urls'
@@ -122,7 +125,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     Path(BASE_DIR / 'frontend/static'),
 ]
-STATIC_ROOT = 'static/'
+# STATIC_ROOT = 'static/'
+STATIC_ROOT =os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/img/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'frontend/static/')
 
